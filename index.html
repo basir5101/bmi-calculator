@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h3>আপনার স্বাস্থের অবস্থা দেখে নিন</h3>
+    <hr>
+    <form>
+        <label for="height">উচ্চতা (feet): </label>
+        <input type="number" id="height" placeholder="5.5">
+        <br>
+        <br>
+        <label for="weight">ওজন (kg): </label>
+        <input type="number" id="weight" placeholder="60">
+    </form>
+    <button id="check">Check</button>
+    <p id="result">...</p>
+    <script>
+        document.getElementById('check').addEventListener('click', function(){
+            let heightFeet = document.getElementById('height').value;
+                heightFeet = parseFloat(heightFeet);
+            const heightMeter = heightFeet * 0.3048;
+            const squareMeter = heightMeter * heightMeter;
+            let weight = document.getElementById('weight').value;
+                weight = parseFloat(weight);
+            let bmi = weight / squareMeter;
+            if(bmi === NaN || bmi == undefined || bmi == false || bmi == "" || bmi == 0){
+                document.getElementById('result').innerHTML = "please give a valid value in the input section.";
+            }
+            else if(bmi < 18.5){
+                document.getElementById('result').innerHTML ="আপনার bmi = " + bmi +  " => আপনি অনেক পাতলা । একটু খাবারের সম্পর্ক রাখুন ।";
+            }
+            else if( bmi > 18.5 && bmi <= 25){
+                document.getElementById('result').innerHTML ="আপনার bmi = " + bmi +  " => আপনি সুস্বাস্থের অধিকারি ।";
+            }
+            else if ( bmi > 25 && bmi <= 30){
+                document.getElementById('result').innerHTML ="আপনার bmi = " + bmi +  " => আপনার ওজন বেশি হয়ে গেছে। ওজন কমান নইলে পস্তাবেন ।";
+
+            }
+            else {
+                document.getElementById('result').innerHTML ="আপনার bmi = " + bmi +  " => আপনি ড্যঞ্জার জোনে চলে গেছেন। নিয়মিত ব্যায়াম করুন।";
+            }
+        })
+    </script>
+</body>
+</html>
